@@ -14,6 +14,8 @@ defmodule ParknSpots.Router do
   plug :dispatch
 
   forward "/properties", to: Routes.Properties
+  forward "/addresses", to: Routes.Addresses
+  forward "/spots", to: Routes.Spots
 
   match _, do:
     conn

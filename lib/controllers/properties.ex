@@ -68,6 +68,7 @@ defmodule ParknSpots.Controllers.Properties do
     end
   end
 
+  # TODO FIX CRUD CREATE
   defp createAddress(address, conn) do 
     case Vex.valid?(address) do
       true ->
