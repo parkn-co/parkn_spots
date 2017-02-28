@@ -35,8 +35,9 @@ defmodule ParknSpots.Mixfile do
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
       {:poison, "~> 3.0"},
-      {:mongodb, ">= 0.0.0"},
-      {:poolboy, ">= 0.0.0"}
+      {:mongodb, "~> 0.2.0"},
+      {:poolboy, ">= 0.0.0"},
+      {:vex, "~> 0.6.0"}
     ]
   end
 end
