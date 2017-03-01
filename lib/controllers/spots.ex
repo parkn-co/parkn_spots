@@ -18,8 +18,8 @@ defmodule ParknSpots.Controllers.Spots do
     Reads all Addresses.
     If collection is empty, returns empty array.
   """
-  def readAll(conn) do
-    CrudController.readAll(conn, @collection, @pool, Spot)
+  def read_all(conn) do
+    CrudController.read_all(conn, @collection, @pool, Spot)
   end
 
   @doc """
@@ -27,7 +27,24 @@ defmodule ParknSpots.Controllers.Spots do
     Reads for the specific address.
     If not found, returns an empty object.
   """
-  def readById(conn, id) do
-    CrudController.readById(conn, id, @collection, @pool, Spot)
+  def read_by_id(conn, id) do
+    CrudController.read_by_id(conn, id, @collection, @pool, Spot)
+  end
+
+  @doc """
+    Takes a connection, struct, and ID.
+    Updates the specific address.
+  """
+  def update_by_id(conn, id) do
+    map = Map.drop(conn.body_params, ["_id"])
+    CrudController.update_by_id(conn, map, id, @collection, @pool, Spot)
+  end
+
+  @doc """
+    Takes a connection, struct, and ID.
+    Deletes the specific address.
+  """
+  def delete_by_id(conn, id) do
+    CrudController.delete_by_id(conn, id, @collection, @pool, Spot)
   end
 end

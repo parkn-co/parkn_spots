@@ -6,9 +6,11 @@ defmodule ParknSpots.Utils do
     content type. Will encode the body to a JSON object.
   """
   def send(body, conn, status) do
-    conn
-      |> put_resp_content_type("application/json")
-      |> send_resp(Plug.Conn.Status.code(status), Poison.encode!(body))
+    put_resp_content_type(conn, "application/json")
+      |> send_resp(
+        Plug.Conn.Status.code(status),
+        Poison.encode!(%{status: status, payload: body})
+      )
   end
 
   @doc """
@@ -20,7 +22,7 @@ defmodule ParknSpots.Utils do
   def to_struct(attrs, kind, opts \\ []) do
     struct = struct(kind)
     
-    if Enum.count(attrs) == 0 do
+    if attrs == nil or Enum.count(attrs) == 0 do
       struct
     else
       Enum.reduce Map.to_list(struct), struct, fn {k, _}, acc ->

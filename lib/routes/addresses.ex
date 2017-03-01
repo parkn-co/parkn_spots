@@ -7,6 +7,8 @@ defmodule ParknSpots.Routes.Addresses do
   alias ParknSpots.Controllers.Addresses, as: AddressesController
 
   post "/", do: AddressesController.create conn
-  get "/", do: AddressesController.readAll conn
-  get "/:id", do: AddressesController.readById conn, id
+  get "/", do: AddressesController.read_all conn
+  get "/:id", do: AddressesController.read_by_id conn, id
+  put "/:id", do: AddressesController.update_by_id conn, id
+  delete "/:id", do: AddressesController.delete_by_id conn, id
 end
