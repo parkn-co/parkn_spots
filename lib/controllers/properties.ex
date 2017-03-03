@@ -42,7 +42,7 @@ defmodule ParknSpots.Controllers.Properties do
     and returns a response.
   """
   def readAll(conn) do
-    CRUD.read(@properties, @pool)
+    CRUD.read_all(@properties, @pool)
     |> Enum.map(fn(spotMap) -> to_struct(spotMap, Property, encode_id: true) end)
     |> send(conn, 200)
   end
@@ -54,7 +54,7 @@ defmodule ParknSpots.Controllers.Properties do
   """
   def readById(conn, id) do
     value = BSON.ObjectId.decode!(id)
-    |> CRUD.readById(@properties, @pool)
+    |> CRUD.read_by_id(@properties, @pool)
     |> Enum.at(0)
     |> case do
       0 -> nil
