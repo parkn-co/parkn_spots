@@ -1,5 +1,5 @@
 defmodule ParknSpots.Components.Properties.Controller do
-  import ParknSpots.Utils, only: :functions
+  import ParknSpots.Components.Utils, only: :functions
 
   alias ParknSpots.DB.CRUD
   alias ParknSpots.Structs.Address

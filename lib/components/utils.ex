@@ -1,4 +1,4 @@
-defmodule ParknSpots.Utils do
+defmodule ParknSpots.Components.Utils do
   import Plug.Conn
 
   @doc """
@@ -11,6 +11,20 @@ defmodule ParknSpots.Utils do
         Plug.Conn.Status.code(status),
         Poison.encode!(%{status: status, payload: body})
       )
+  end
+
+  @doc """
+
+  """
+  def handle_result(value, conn) do
+    case value do
+      %Mongo.Error{message: message} ->
+        send(%{error: message}, conn, 500)
+      map when map == %{} ->
+        send(map, conn, 404)
+      map ->
+        send(map, conn, 200)
+    end
   end
 
   @doc """
