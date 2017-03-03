@@ -1,10 +1,10 @@
-defmodule ParknSpots.Routes.Addresses do
+defmodule ParknSpots.Components.Addresses.Route do
   use Plug.Router
 
   plug :match
   plug :dispatch
 
-  alias ParknSpots.Controllers.Addresses, as: AddressesController
+  alias ParknSpots.Components.Addresses.Controller, as: AddressesController
 
   post "/", do: AddressesController.create conn
   get "/", do: AddressesController.read_all conn

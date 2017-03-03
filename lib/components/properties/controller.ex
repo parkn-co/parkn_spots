@@ -1,4 +1,4 @@
-defmodule ParknSpots.Controllers.Properties do
+defmodule ParknSpots.Components.Properties.Controller do
   import ParknSpots.Utils, only: :functions
 
   alias ParknSpots.DB.CRUD

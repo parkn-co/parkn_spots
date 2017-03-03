@@ -1,6 +1,6 @@
 defmodule ParknSpots.Router do
   use Plug.Router
-  alias ParknSpots.Routes
+  alias ParknSpots.Components
 
   if Mix.env == :dev do
     use Plug.Debugger
@@ -13,13 +13,13 @@ defmodule ParknSpots.Router do
   plug :match
   plug :dispatch
 
-  forward "/properties", to: Routes.Properties
-  forward "/addresses", to: Routes.Addresses
-  forward "/spots", to: Routes.Spots
+  forward "/addresses", to: Components.Addresses.Route
+  forward "/spots", to: Components.Spots.Route
+  forward "/properties", to: Components.Properties.Route
 
   match _, do:
     conn
       |> put_resp_content_type("application/json")
-      |> send_resp(404, ~s({"status": 404, "message": "Not Found"}))
+      |> send_resp(404, %{status: 404, payload: nil})
 end
 

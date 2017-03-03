@@ -1,10 +1,10 @@
-defmodule ParknSpots.Routes.Properties do
+defmodule ParknSpots.Components.Properties.Route do
   use Plug.Router
 
   plug :match
   plug :dispatch
 
-  alias ParknSpots.Controllers.Properties, as: PropertiesController
+  alias ParknSpots.Components.Properties.Controller, as: PropertiesController
 
   post "/", do: PropertiesController.create conn
   get "/", do: PropertiesController.readAll conn
