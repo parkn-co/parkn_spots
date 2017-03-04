@@ -14,7 +14,9 @@ defmodule ParknSpots.Components.Utils do
   end
 
   @doc """
-
+    Takes a value and a connection.
+    If value is an empty map or Mongo.Error, send error response,
+    else send valid response.
   """
   def handle_result(value, conn) do
     case value do
@@ -26,6 +28,14 @@ defmodule ParknSpots.Components.Utils do
         send(map, conn, 200)
     end
   end
+
+  @doc """
+  """
+  def convert_and_validate(map, type) do
+    to_struct(map, type)
+    |> Vex.valid?
+  end
+
 
   @doc """
     Transform a given struct to an object, with the given attributes.

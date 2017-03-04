@@ -4,11 +4,20 @@ defmodule ParknSpots.Components.Spots.Route do
   plug :match
   plug :dispatch
 
-  alias ParknSpots.Components.Spots.Controller, as: SpotsController
+  alias ParknSpots.Components.CRUD.Controller, as: CrudController
 
-  post "/", do: SpotsController.create conn
-  get "/", do: SpotsController.read_all conn
-  get "/:id", do: SpotsController.read_by_id conn, id
-  put "/:id", do: SpotsController.update_by_id conn, id
-  delete "/:id", do: SpotsController.delete_by_id conn, id
+  @struct ParknSpots.Structs.Spot
+  @collection "spots"
+  @pool DBConnection.Poolboy
+
+  post "/",
+    do: CrudController.create(conn, conn.body_params, @struct, @collection, @pool)
+  get "/",
+    do: CrudController.read_all(conn, @struct, @collection, @pool)
+  get "/:id",
+    do: CrudController.read_by_id(conn, id, @struct, @collection, @pool)
+  put "/:id",
+    do: CrudController.update_by_id(conn, id, conn.body_params, @struct, @collection, @pool)
+  delete "/:id",
+    do: CrudController.delete_by_id(conn, id, @struct, @collection, @pool)
 end
