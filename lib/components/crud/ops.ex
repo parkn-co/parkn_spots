@@ -1,4 +1,4 @@
-defmodule ParknSpots.Components.CRUD.Opts do
+defmodule ParknSpots.Components.CRUD.Ops do
   @moduledoc """
     Handles the logic and object transformation that is required to
     interact with the mongo instance.
